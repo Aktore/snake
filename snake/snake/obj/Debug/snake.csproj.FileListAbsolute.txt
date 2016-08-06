@@ -1,0 +1,6 @@
+C:\Users\Aktore\Google Диск\snake\snake\snake\bin\Debug\snake.exe.config
+C:\Users\Aktore\Google Диск\snake\snake\snake\bin\Debug\snake.exe
+C:\Users\Aktore\Google Диск\snake\snake\snake\bin\Debug\snake.pdb
+C:\Users\Aktore\Google Диск\snake\snake\snake\obj\Debug\snake.csprojResolveAssemblyReference.cache
+C:\Users\Aktore\Google Диск\snake\snake\snake\obj\Debug\snake.exe
+C:\Users\Aktore\Google Диск\snake\snake\snake\obj\Debug\snake.pdb
