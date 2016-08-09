@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace snake
 {
-    class VerticalLine // класс который будет рисовать горизотальную линию
+    class VerticalLine : Figure
     {
-        List<Point> pList;
+      
         public VerticalLine( int yTop, int ybottom, int x, char sym)
         {
             pList = new List<Point>();
@@ -16,14 +16,6 @@ namespace snake
             {
                 Point p = new Point(x, y, sym);
                 pList.Add(p);
-            }
-        }
-
-        public void yDraw()
-        {
-            foreach (Point p in pList)
-            {
-                p.Draw();
             }
         }
     }
