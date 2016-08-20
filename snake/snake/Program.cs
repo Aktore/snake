@@ -11,36 +11,50 @@ namespace snake
     {
         static void Main(string[] args)
         {
-            VerticalLine vl = new VerticalLine(0, 28, 0, '*');
-            Draw(vl);
+            int mapWidth = 80;
+            int mapHeight = 40;
+            Console.SetWindowSize( // задаем размер экрана
+       Math.Min(mapWidth, Console.LargestWindowWidth),
+       Math.Min(mapHeight, Console.LargestWindowHeight));
 
+            Walls walls = new Walls(mapWidth, mapHeight);
+            walls.Draw();
+         
+            // отрисовка точек
             Point p = new Point(10, 10, '*');
 
-            Figure fSnake = new Snake(p, 10, Direction.RIGHT);
-            Draw(fSnake);
-            Snake snake = (Snake)fSnake;
+            Snake snake = new Snake(p, 4, Direction.RIGHT);
+            snake.Draw();
 
-            snake.Move();
+            FoodCreator foodCreator = new FoodCreator(mapWidth, mapHeight, '$');
+            Point food = foodCreator.CreateFood();
+            food.Draw();
 
-            HorizontalLine hl = new HorizontalLine(0, 5, 6, '&');
-
-            List<Figure> figures = new List<Figure>();
-            figures.Add(fSnake);
-            figures.Add(vl);
-            figures.Add(hl);
-
-            foreach (var f in figures)
+            while (true)
             {
-                f.Draw();
+                if (walls.IsHit(snake) || snake.IsHitTail())
+                {
+                    break;
+                }
+                if (snake.Eat(food))
+                {
+                    food = foodCreator.CreateFood();
+                    food.Draw();
+                }
+                else
+                {
+                    snake.Move();
+                }
+
+                snake.Move();
+
+                Thread.Sleep(150);
+                if (Console.KeyAvailable)
+                {
+                    ConsoleKeyInfo key = Console.ReadKey();
+                    snake.HandleKey(key.Key);
+                }
             }
-            Console.ReadKey();
-        }
-
-
-        static void Draw(Figure figure)
-        {
-            figure.Draw();
-        }
-        
+        }               
     }
 }
